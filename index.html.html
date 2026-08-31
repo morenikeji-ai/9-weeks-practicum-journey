@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My 9-Week Practicum Journey</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #06b6d4;
+            --dark: #07111f;
+            --card: #0d1b2d;
+            --card2: #10243a;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: rgba(148, 163, 184, 0.15);
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        span {
+            color: var(--secondary);
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(7, 17, 31, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 75px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 10% 20%,
+                rgba(37, 99, 235, .18), transparent 30%),
+                radial-gradient(circle at 90% 70%,
+                rgba(6, 182, 212, .12), transparent 30%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .label {
+            color: var(--secondary);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero-text > p:not(.label) {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        .primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            background: #1d4ed8;
+        }
+
+        .outline {
+            border: 1px solid var(--border);
+        }
+
+        .outline:hover {
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+
+        /* CODE BOX */
+
+        .code-box {
+            background: #091525;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,.35);
+        }
+
+        .code-top {
+            height: 45px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dots i {
+            width: 10px;
+            height: 10px;
+            background: #64748b;
+            border-radius: 50%;
+        }
+
+        .filename {
+            margin: auto;
+            color: var(--muted);
+            font-size: .75rem;
+        }
+
+        .code {
+            padding: 35px 25px;
+            font-family: monospace;
+            color: #cbd5e1;
+            font-size: .9rem;
+        }
+
+        .code p {
+            margin-bottom: 15px;
+        }
+
+        .indent {
+            padding-left: 25px;
+        }
+
+        .purple {
+            color: #c084fc;
+        }
+
+        .green {
+            color: #4ade80;
+        }
+
+        .orange {
+            color: #fb923c;
+        }
+
+
+        /* =========================
+           SECTION HEADINGS
+        ========================= */
+
+        .heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 55px;
+        }
+
+        .heading h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .heading p:last-child {
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: #091525;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-7px);
+            border-color: var(--secondary);
+        }
+
+        .stat i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            margin-top: 5px;
+        }
+
+        .stat p {
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .3s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+        }
+
+        .project-top {
+            height: 170px;
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+        }
+
+        .project-top.portfolio {
+            background: linear-gradient(135deg,#1d4ed8,#312e81);
+        }
+
+        .project-top.cgpa {
+            background: linear-gradient(135deg,#047857,#164e63);
+        }
+
+        .project-top.quiz {
+            background: linear-gradient(135deg,#7c3aed,#9d174d);
+        }
+
+        .project-top.product {
+            background: linear-gradient(135deg,#c2410c,#7c2d12);
+        }
+
+        .project-top.coffee {
+            background: linear-gradient(135deg,#78350f,#451a03);
+        }
+
+        .project-body {
+            padding: 23px;
+        }
+
+        .project-body h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-body p {
+            color: var(--muted);
+            font-size: .88rem;
+            margin-bottom: 15px;
+        }
+
+        .project-body ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .project-body li {
+            font-size: .8rem;
+            color: #cbd5e1;
+        }
+
+        .project-body li::before {
+            content: "✓";
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .tags span {
+            padding: 4px 8px;
+            border-radius: 5px;
+            background: rgba(6,182,212,.1);
+            font-size: .7rem;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-section {
+            background: #091525;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+        }
+
+        .skill {
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: .3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .skill p {
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .week {
+            width: 70px;
+            height: 70px;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            color: var(--secondary);
+            background: var(--card);
+            font-weight: 800;
+        }
+
+        .timeline-content {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .timeline-content small {
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .timeline-content p {
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary {
+            background: #091525;
+        }
+
+        .summary-box {
+            padding: 50px;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(37,99,235,.15),
+                rgba(6,182,212,.07)
+            );
+            border: 1px solid rgba(6,182,212,.2);
+        }
+
+        .summary-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .summary-box p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           TEAM
+        ========================= */
+
+        .team-section {
+            background: var(--dark);
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+        }
+
+        .member {
+            padding: 30px 20px;
+            text-align: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            transition: .3s;
+        }
+
+        .member:hover {
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,
+            var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .member h3 {
+            font-size: 1rem;
+        }
+
+        .member .role {
+            display: block;
+            color: var(--secondary);
+            font-size: .75rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .member p {
+            color: var(--muted);
+            font-size: .75rem;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           REFLECTION
+        ========================= */
+
+        .reflection {
+            padding: 100px 0;
+            background: #091525;
+            text-align: center;
+        }
+
+        .reflection-box {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .reflection-box i {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .reflection-box h2 {
+            font-size: 2.7rem;
+            margin-bottom: 20px;
+        }
+
+        .reflection-box p {
+            color: var(--muted);
+        }
+
+        .quote {
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            padding: 80px 0;
+        }
+
+        .contact-box {
+            padding: 55px;
+            border-radius: 20px;
+            background: linear-gradient(135deg,#172554,#164e63);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contact-box h2 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #cbd5e1;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 50px 0 20px;
+            background: #050d17;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+        }
+
+        footer p,
+        footer a {
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+        footer h4 {
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .copyright {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding-top: 20px;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:1000px) {
+
+            .hero-content,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text > p:not(.label) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .projects {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .skills {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+
+        @media(max-width:750px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #091525;
+                padding: 20px;
+                flex-direction: column;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .projects,
+            .team {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media(max-width:500px) {
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .stats,
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 50px 1fr;
+                gap: 15px;
+            }
+
+            .week {
+                width: 50px;
+                height: 50px;
+                font-size: .7rem;
+            }
+
+            .summary-box,
+            .contact-box {
+                padding: 30px 20px;
+            }
+
+            .contact-box h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+    <nav class="container">
+
+        <a href="#home" class="logo">
+            <span>&lt;/&gt;</span> My Practicum
+        </a>
+
+        <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="container hero-content">
+
+        <div class="hero-text reveal">
+
+            <p class="label">
+                9-WEEK WEBSITE DEVELOPMENT PRACTICUM
+            </p>
+
+            <h1>
+                My <span>9-Week</span><br>
+                Practicum Journey
+            </h1>
+
+            <p>
+                Learning, building and growing through practical
+                Website Development projects using HTML, CSS and JavaScript.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="btn primary">
+                    Explore Projects
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <a href="#team" class="btn outline">
+                    Meet Our Team
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="code-box reveal">
+
+            <div class="code-top">
+
+                <div class="dots">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
+
+                <div class="filename">
+                    practicum.html
+                </div>
+
+            </div>
+
+            <div class="code">
+
+                <p>
+                    <span class="purple">&lt;section</span>
+                    <span class="green">class</span>=
+                    <span class="orange">"journey"</span>
+                    <span class="purple">&gt;</span>
+                </p>
+
+                <p class="indent">
+                    <span class="purple">&lt;h1&gt;</span>
+                    My Practicum
+                    <span class="purple">&lt;/h1&gt;</span>
+                </p>
+
+                <p class="indent">
+                    <span class="purple">&lt;p&gt;</span>
+                    Learning to Build
+                    <span class="purple">&lt;/p&gt;</span>
+                </p>
+
+                <p class="indent">
+                    <span class="purple">&lt;button&gt;</span>
+                    Explore Projects
+                    <span class="purple">&lt;/button&gt;</span>
+                </p>
+
+                <p>
+                    <span class="purple">&lt;/section&gt;</span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section about" id="about">
+
+    <div class="container">
+
+        <div class="heading reveal">
+
+            <p class="label">ABOUT MY PRACTICUM</p>
+
+            <h2>
+                Learning Through <span>Practice</span>
+            </h2>
+
+            <p>
+                My 9-week practicum gave me the opportunity to
+                learn website development through practical projects.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-text reveal">
+
+                <h3>My Learning Experience</h3>
+
+                <p>
+                    I am currently learning Website Development as part
+                    of my 9-week practicum. During this period, I gained
+                    practical experience in HTML, CSS and JavaScript.
+                </p>
+
+                <p>
+                    I worked on different projects including a portfolio
+                    website, CGPA calculator, quiz application, responsive
+                    product preview card and coffee website.
+                </p>
+
+                <p>
+                    These projects helped me improve my creativity,
+                    problem-solving skills, responsive design and
+                    confidence in website development.
+                </p>
+
+            </div>
+
+
+            <div class="stats reveal">
+
+                <div class="stat">
+                    <i class="fas fa-calendar"></i>
+                    <h3>9</h3>
+                    <p>Weeks</p>
+                </div>
+
+                <div class="stat">
+                    <i class="fas fa-folder-open"></i>
+                    <h3>5+</h3>
+                    <p>Projects</p>
+                </div>
+
+                <div class="stat">
+                    <i class="fas fa-code"></i>
+                    <h3>3</h3>
+                    <p>Core Technologies</p>
+                </div>
+
+                <div class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>100%</h3>
+                    <p>Growth</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section class="section" id="projects">
+
+    <div class="container">
+
+        <div class="heading reveal">
+
+            <p class="label">MY PROJECTS</p>
+
+            <h2>
+                Things I <span>Built</span>
+            </h2>
+
+            <p>
+                Projects I designed and developed during my practicum.
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+
+            <div class="project reveal">
+
+                <div class="project-top portfolio">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+
+                <div class="project-body">
+
+                    <h3>Portfolio Website</h3>
+
+                    <p>
+                        A personal portfolio website designed to showcase
+                        skills, projects and personal information.
+                    </p>
+
+                    <ul>
+                        <li>Responsive design</li>
+                        <li>About section</li>
+                        <li>Skills section</li>
+                        <li>Project showcase</li>
+                    </ul>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-top cgpa">
+                    <i class="fas fa-calculator"></i>
+                </div>
+
+                <div class="project-body">
+
+                    <h3>CGPA Calculator</h3>
+
+                    <p>
+                        A web application designed to help students
+                        calculate their CGPA.
+                    </p>
+
+                    <ul>
+                        <li>Course input</li>
+                        <li>Credit units</li>
+                        <li>Grade selection</li>
+                        <li>Automatic calculation</li>
+                    </ul>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-top quiz">
+                    <i class="fas fa-circle-question"></i>
+                </div>
+
+                <div class="project-body">
+
+                    <h3>Quiz App</h3>
+
+                    <p>
+                        An interactive quiz application using
+                        multiple-choice questions.
+                    </p>
+
+                    <ul>
+                        <li>Multiple-choice questions</li>
+                        <li>Progress bar</li>
+                        <li>Answer feedback</li>
+                        <li>Score calculation</li>
+                    </ul>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-top product">
+                    <i class="fas fa-cart-shopping"></i>
+                </div>
+
+                <div class="project-body">
+
+                    <h3>Responsive Product Preview Card</h3>
+
+                    <p>
+                        A responsive product card created to demonstrate
+                        modern user interface design.
+                    </p>
+
+                    <ul>
+                        <li>Product image</li>
+                        <li>Product information</li>
+                        <li>Price display</li>
+                        <li>Responsive layout</li>
+                    </ul>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-top coffee">
+                    <i class="fas fa-mug-hot"></i>
+                </div>
+
+                <div class="project-body">
+
+                    <h3>Coffee Website</h3>
+
+                    <p>
+                        A modern coffee website designed to showcase
+                        coffee products.
+                    </p>
+
+                    <ul>
+                        <li>Hero section</li>
+                        <li>Navigation</li>
+                        <li>Coffee products</li>
+                        <li>Responsive design</li>
+                    </ul>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="section skills-section" id="skills">
+
+    <div class="container">
+
+        <div class="heading reveal">
+
+            <p class="label">SKILLS</p>
+
+            <h2>
+                What I Have <span>Learned</span>
+            </h2>
+
+        </div>
+
+
+        <div class="skills">
+
+            <div class="skill reveal">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+                <p>Creating website structure.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+                <p>Styling and designing websites.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+                <p>Adding functionality and interaction.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fas fa-mobile-screen"></i>
+                <h3>Responsive Design</h3>
+                <p>Making websites work on different devices.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fas fa-pen-ruler"></i>
+                <h3>UI Design</h3>
+                <p>Creating attractive user interfaces.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fas fa-table-columns"></i>
+                <h3>Flexbox & Grid</h3>
+                <p>Creating modern website layouts.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fas fa-bug"></i>
+                <h3>Debugging</h3>
+                <p>Finding and fixing coding errors.</p>
+            </div>
+
+            <div class="skill reveal">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Problem Solving</h3>
+                <p>Finding solutions to development challenges.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     9 WEEK JOURNEY
+========================= -->
+
+<section class="section" id="journey">
+
+    <div class="container">
+
+        <div class="heading reveal">
+
+            <p class="label">MY JOURNEY</p>
+
+            <h2>
+                9 Weeks of <span>Growth</span>
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="week">01</div>
+                <div class="timeline-content">
+                    <small>WEEK 1</small>
+                    <h3>Introduction to Website Development</h3>
+                    <p>
+                        Introduction to website development and understanding
+                        how websites work.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">02</div>
+                <div class="timeline-content">
+                    <small>WEEK 2</small>
+                    <h3>HTML Fundamentals</h3>
+                    <p>
+                        Learning HTML elements, headings, paragraphs,
+                        links, images and forms.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">03</div>
+                <div class="timeline-content">
+                    <small>WEEK 3</small>
+                    <h3>CSS Styling and Layout</h3>
+                    <p>
+                        Learning colors, fonts, spacing, Flexbox,
+                        Grid and website layouts.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">04</div>
+                <div class="timeline-content">
+                    <small>WEEK 4</small>
+                    <h3>Responsive Web Design</h3>
+                    <p>
+                        Learning how to make websites responsive
+                        on phones, tablets and computers.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">05</div>
+                <div class="timeline-content">
+                    <small>WEEK 5</small>
+                    <h3>JavaScript Fundamentals</h3>
+                    <p>
+                        Learning JavaScript and adding interactivity
+                        to websites.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">06</div>
+                <div class="timeline-content">
+                    <small>WEEK 6</small>
+                    <h3>Mini Projects</h3>
+                    <p>
+                        Building small projects to practice HTML,
+                        CSS and JavaScript.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">07</div>
+                <div class="timeline-content">
+                    <small>WEEK 7</small>
+                    <h3>Quiz App & CGPA Calculator</h3>
+                    <p>
+                        Developing interactive applications using
+                        JavaScript.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">08</div>
+                <div class="timeline-content">
+                    <small>WEEK 8</small>
+                    <h3>Portfolio, Coffee Website & Product Card</h3>
+                    <p>
+                        Designing responsive websites and improving
+                        user interface skills.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item reveal">
+                <div class="week">09</div>
+                <div class="timeline-content">
+                    <small>WEEK 9</small>
+                    <h3>Project Improvement & Presentation</h3>
+                    <p>
+                        Testing projects, fixing errors, improving
+                        designs and preparing for presentation.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRACTICUM SUMMARY
+========================= -->
+
+<section class="section summary">
+
+    <div class="container">
+
+        <div class="summary-box reveal">
+
+            <p class="label">PRACTICUM SUMMARY</p>
+
+            <h2>
+                From Learning to <span>Building</span>
+            </h2>
+
+            <p>
+                My 9-week practicum has been an important part of my
+                journey into Website Development. During this period,
+                I learned how to structure websites using HTML, style
+                them using CSS and add functionality using JavaScript.
+            </p>
+
+            <p>
+                Through different projects, I was able to apply what
+                I learned and gain practical experience. The practicum
+                improved my creativity, problem-solving ability,
+                responsive design skills and confidence in website
+                development.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section class="section team-section" id="team">
+
+    <div class="container">
+
+        <div class="heading reveal">
+
+            <p class="label">OUR TEAM</p>
+
+            <h2>
+                Meet Our Practicum <span>Members</span>
+            </h2>
+
+            <p>
+                The members who shared this website development journey.
+            </p>
+
+        </div>
+
+
+        <div class="team">
+
+
+            <div class="member reveal">
+                <div class="avatar">YZ</div>
+                <h3>Yekini Zainab</h3>
+                <span class="role">UI/UX Designer</span>
+                <p>Responsible for interface ideas, visual design and user experience.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">RA</div>
+                <h3>Rabiu Alice</h3>
+                <span class="role">Frontend Developer</span>
+                <p>Responsible for creating website interfaces using HTML and CSS.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">ID</div>
+                <h3>Idowu Deborah</h3>
+                <span class="role">Content & Documentation</span>
+                <p>Responsible for website content, documentation and project information.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">BK</div>
+                <h3>Bello Kafayat</h3>
+                <span class="role">Frontend Developer</span>
+                <p>Worked on webpage structure, styling and responsive layouts.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">YJ</div>
+                <h3>Yoyo Joshua</h3>
+                <span class="role">JavaScript Developer</span>
+                <p>Responsible for website functionality and interactive features.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">SA</div>
+                <h3>Sodiq Aminat</h3>
+                <span class="role">Responsive Design Specialist</span>
+                <p>Focused on making websites work properly across different devices.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">OI</div>
+                <h3>Oluwabunkinmi Ibiwoye</h3>
+                <span class="role">Project Coordinator</span>
+                <p>Helped coordinate tasks, project progress and team activities.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">SI</div>
+                <h3>Sanni Ibrahim</h3>
+                <span class="role">Web Tester</span>
+                <p>Responsible for testing websites and identifying possible errors.</p>
+            </div>
+
+
+            <div class="member reveal">
+                <div class="avatar">WO</div>
+                <h3>Waris Olaitan</h3>
+                <span class="role">Web Developer</span>
+                <p>Worked on website development, improvements and project implementation.</p>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REFLECTION
+========================= -->
+
+<section class="reflection">
+
+    <div class="container">
+
+        <div class="reflection-box reveal">
+
+            <i class="fas fa-quote-left"></i>
+
+            <p class="label">MY PRACTICUM EXPERIENCE</p>
+
+            <h2>
+                Every Project Was a Step Forward
+            </h2>
+
+            <p>
+                This practicum taught me that becoming a good developer
+                requires continuous learning and practice. Every project
+                came with challenges, but solving those challenges helped
+                me understand website development better.
+            </p>
+
+            <div class="quote">
+                "Every project was a step forward in my journey as a web developer."
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-box reveal">
+
+            <div>
+
+                <p class="label">THANK YOU</p>
+
+                <h2>
+                    Thank You for Exploring<br>
+                    <span>My Journey</span>
+                </h2>
+
+                <p>
+                    Thank you for taking the time to explore my
+                    9-week practicum journey.
+                </p>
+
+            </div>
+
+            <a href="#home" class="btn primary">
+                Back to Top
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <a href="#home" class="logo">
+                    <span>&lt;/&gt;</span> My Practicum
+                </a>
+
+                <p>
+                    Learning, building and growing through
+                    Website Development.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#journey">Journey</a>
+                    <a href="#team">Team</a>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h4>Technologies</h4>
+
+                <div class="footer-links">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>Responsive Design</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 My 9-Week Practicum Journey.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    /* MOBILE MENU */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+
+        navLinks.classList.toggle("show");
+
+        const icon = menuBtn.querySelector("i");
+
+        if (navLinks.classList.contains("show")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+
+    /* CLOSE MENU WHEN LINK IS CLICKED */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navLinks.classList.remove("show");
+
+            const icon = menuBtn.querySelector("i");
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        });
+
+    });
+
+
+    /* SCROLL REVEAL ANIMATION */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+    revealElements.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+    /* ACTIVE NAVIGATION */
+
+    const sections =
+        document.querySelectorAll("section[id]");
+
+    const navItems =
+        document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+
+        let current = "";
+
+        sections.forEach(section => {
+
+            const sectionTop =
+                section.offsetTop - 150;
+
+            if (window.scrollY >= sectionTop) {
+
+                current = section.getAttribute("id");
+
+            }
+
+        });
+
+
+        navItems.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (
+                link.getAttribute("href") === "#" + current
+            ) {
+
+                link.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
